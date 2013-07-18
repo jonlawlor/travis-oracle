@@ -1,4 +1,16 @@
 language: ruby
 
 before_install:
+  - ls -l /dev/shm
+  - test -e /dev/shm ; echo $?
+  - test -L /dev/shm ; echo $?
   - ./install.sh
+
+before_script:
+  - df -BG
+  - df -h
+
+script: >
+  df -BG /dev/shm &&
+  mount &&
+  ruby -e 'puts `df -BG /dev/shm`.split("\n").inspect' -e 'puts `df -BG /dev/shm`.split("\n")[1].split(/\b/).inspect'
