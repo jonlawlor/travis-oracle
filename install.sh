@@ -14,5 +14,5 @@ if [ -n "$ORACLE_CLIENT_FILES" ]; then
 fi
 
 if [ -n "$ORACLE_FILE" ]; then
-	setup_oracle_xi.sh
+	./setup_oracle_xi.sh
 fi
