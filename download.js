@@ -1,5 +1,7 @@
 var system = require('system');
 var env = system.env;
+var address = system.args[1];
+var filename = system.args[2];
 
 function javascriptRequired () {
 	page.onLoadFinished = dumpCookies;
@@ -40,4 +42,4 @@ page.settings.userAgent = env['USER_AGENT'];
 
 page.onResourceError = function(error) { system.stderr.writeLine(JSON.stringify(error)); phantom.exit(1); }
 page.onLoadFinished = javascriptRequired;
-page.open(env['ORACLE_URL'] + env['ORACLE_FILE']);
+page.open(address + filename);
