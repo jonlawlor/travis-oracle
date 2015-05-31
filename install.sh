@@ -30,7 +30,7 @@ if [ -z "$ORACLE_FILE" ]; then
 	SQL
 fi
 
-if [ -z "$ORACLE_CLIENT_FILES"]; then
+if [ -z "$ORACLE_CLIENT_FILES" ]; then
 	for client_file in ${ORACLE_CLIENT_FILES//:/ }; do
 		sudo dpkg --install `sudo alien --scripts --to-deb "$client_file" | cut -d' ' -f1`
 	done
