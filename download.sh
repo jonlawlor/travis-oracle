@@ -8,6 +8,7 @@ cd "$(dirname "$(readlink -f "$0")")"
 echo > "$COOKIES"
 chmod 600 "$COOKIES"
 
+echo "Checking $ORACLE_FILE"
 if [ -z "$ORACLE_FILE" ]; then
 	echo "Downloading $ORACLE_FILE"
 	phantomjs --ssl-protocol=tlsv1 download.js "$ORACLE_URL" "$ORACLE_FILE"| head -n 1 |
@@ -17,6 +18,7 @@ if [ -z "$ORACLE_FILE" ]; then
 	echo "Downloaded $ORACLE_FILE"
 fi
 
+echo "Checking $ORACLE_CLIENT_FILES"
 if [ -z "$ORACLE_CLIENT_FILES" ]; then
 	echo "Downloading $ORACLE_CLIENT_FILES"
 	for client_file in ${ORACLE_CLIENT_FILES//:/ }; do
