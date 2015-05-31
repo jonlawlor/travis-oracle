@@ -11,5 +11,5 @@ env:
     - ORACLE_CLIENT_FILES=oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm:oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm:oracle-instantclient12.1-sqlplus-12.1.0.2.0-1.x86_64.rpm
 
 before_install:
-  - ./download.sh
-  - ./install.sh
+  - bash ./download.sh
+  - bash ./install.sh
