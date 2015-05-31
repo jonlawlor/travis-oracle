@@ -23,9 +23,12 @@ the current license agreement for [Oracle Database Express Edition][].
 2. Add the version information to your build environment variables:
 
    ```yaml
+   - ORACLE_URL=https://edelivery.oracle.com/akam/otn/linux/oracle11g/xe/
    - ORACLE_FILE=oracle-xe-11.2.0-1.0.x86_64.rpm.zip
    - ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe
    - ORACLE_SID=XE
+   - ORACLE_CLIENT_URL=https://edelivery.oracle.com/akam/otn/linux/instantclient/121020/
+   - ORACLE_CLIENT_FILES=oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm:oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm:oracle-instantclient12.1-sqlplus-12.1.0.2.0-1.x86_64.rpm
    ```
 
 3. Download and extract the [latest release][] into your project. For example,
