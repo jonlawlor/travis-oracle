@@ -9,6 +9,7 @@ echo > "$COOKIES"
 chmod 600 "$COOKIES"
 
 if [ -z "$ORACLE_FILE" ]; then
+	echo "Downloading $ORACLE_FILE"
 	phantomjs --ssl-protocol=tlsv1 download.js "$ORACLE_URL" "$ORACLE_FILE"| head -n 1 |
 	curl --cookie "$COOKIES" --cookie-jar "$COOKIES" --data '@-' \
   	  --location --output "$ORACLE_FILE" --user-agent "$USER_AGENT" \
@@ -17,6 +18,7 @@ if [ -z "$ORACLE_FILE" ]; then
 fi
 
 if [ -z "$ORACLE_CLIENT_FILES" ]; then
+	echo "Downloading $ORACLE_CLIENT_FILES"
 	for client_file in ${ORACLE_CLIENT_FILES//:/ }; do
 		phantomjs --ssl-protocol=tlsv1 download.js "$ORACLE_CLIENT_URL" "$client_file"| head -n 1 |
 		curl --cookie "$COOKIES" --cookie-jar "$COOKIES" --data '@-' \
