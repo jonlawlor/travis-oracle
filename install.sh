@@ -7,7 +7,7 @@ cd "$(dirname "$(readlink -f "$0")")"
 sudo apt-get -qq update
 sudo apt-get --no-install-recommends -qq install alien bc libaio1 unzip
 
-if [ -z "$ORACLE_FILE" ]; then
+if [ -n "$ORACLE_FILE" ]; then
 	df -B1 /dev/shm | awk 'END { if ($1 != "shmfs" && $1 != "tmpfs" || $2 < 2147483648) exit 1 }' ||
 	  ( sudo rm -r /dev/shm && sudo mkdir /dev/shm && sudo mount -t tmpfs shmfs -o size=2G /dev/shm )
 
@@ -30,7 +30,7 @@ if [ -z "$ORACLE_FILE" ]; then
 	SQL
 fi
 
-if [ -z "$ORACLE_CLIENT_FILES" ]; then
+if [ -n "$ORACLE_CLIENT_FILES" ]; then
 	for client_file in ${ORACLE_CLIENT_FILES//:/ }; do
 		sudo dpkg --install `sudo alien --scripts --to-deb "$client_file" | cut -d' ' -f1`
 	done

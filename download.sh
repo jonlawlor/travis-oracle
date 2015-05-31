@@ -8,9 +8,7 @@ cd "$(dirname "$(readlink -f "$0")")"
 echo > "$COOKIES"
 chmod 600 "$COOKIES"
 
-echo "Checking $ORACLE_FILE"
-if [ -z "$ORACLE_FILE" ]; then
-	echo "Downloading $ORACLE_FILE"
+if [ -n "$ORACLE_FILE" ]; then
 	phantomjs --ssl-protocol=tlsv1 download.js "$ORACLE_URL" "$ORACLE_FILE"| head -n 1 |
 	curl --cookie "$COOKIES" --cookie-jar "$COOKIES" --data '@-' \
   	  --location --output "$ORACLE_FILE" --user-agent "$USER_AGENT" \
@@ -18,9 +16,7 @@ if [ -z "$ORACLE_FILE" ]; then
 	echo "Downloaded $ORACLE_FILE"
 fi
 
-echo "Checking $ORACLE_CLIENT_FILES"
-if [ -z "$ORACLE_CLIENT_FILES" ]; then
-	echo "Downloading $ORACLE_CLIENT_FILES"
+if [ -n "$ORACLE_CLIENT_FILES" ]; then
 	for client_file in ${ORACLE_CLIENT_FILES//:/ }; do
 		phantomjs --ssl-protocol=tlsv1 download.js "$ORACLE_CLIENT_URL" "$client_file"| head -n 1 |
 		curl --cookie "$COOKIES" --cookie-jar "$COOKIES" --data '@-' \
